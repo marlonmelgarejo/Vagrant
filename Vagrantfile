@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   # Faz um encaminhamento de porta do VM para HOST
   config.vm.network "forwarded_port", guest: 80, host: 8091
 
-  # Instala softwares, se necessário 
+  # Instala softwares, se necessário. Nesse caso o Nginx 
   config.vm.provision "shell",
     inline: "apt update && apt -y install nginx && service nginx restart"
   
