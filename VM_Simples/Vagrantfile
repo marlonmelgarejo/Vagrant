@@ -1,17 +1,19 @@
-# Configuração padrão para utilizar no VirtualBox
+$aptupdate = <<-EOF
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install net-tools -y
+sudo apt-get install nginx -y
+EOF
+
 Vagrant.configure("2") do |config|
-
-  # Define qual SO irá utilizar
-  config.vm.box = "ubuntu/focal64"
-
-  # Atribuir IP da mesma rede do host. Por padrão utiliza NAT. Escolher o qual placa utilizar
-  config.vm.network "public_network", bridge: "Hyper-V Virtual Ethernet Adapter #3"
-
-  # Faz um encaminhamento de porta do VM para HOST
-  config.vm.network "forwarded_port", guest: 80, host: 8091
-
-  # Instala softwares, se necessário 
-  config.vm.provision "shell",
-    inline: "apt update && apt -y install nginx && service nginx restart"
-  
+  config.vm.define "vmlab01" do |vmlab01|
+    vmlab01.vm.box = "ubuntu/focal64"
+    vmlab01.vm.hostname = 'srv-vmlab01'
+    vmlab01.vm.network "public_network", ip: "192.168.10.10", bridge: "Realtek USB GbE Family Controller"
+    vmlab01.vm.provision "shell", inline: $aptupdate
+  config.vm.provider "virtualbox" do |vmlab01|
+    vmlab01.memory = "2048"
+    vmlab01.cpus   = "2"
+  end
+ end
 end
