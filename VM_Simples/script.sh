@@ -1,7 +1,7 @@
 #!/bin/bash
 apt update
 sudo apt-get install net-tools -y
-sudo apt-get inatall tree -y
+sudo apt-get install tree -y
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker vagrant
