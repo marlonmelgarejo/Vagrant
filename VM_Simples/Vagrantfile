@@ -1,18 +1,21 @@
 $aptupdate = <<-EOF
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install net-tools -y
-sudo apt-get install nginx -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt install net-tools -y
+sudo apt intall nginx -y
+sudp apt inatall tree -y
 EOF
 
 Vagrant.configure("2") do |config|
   config.vm.define "vmlab01" do |vmlab01|
-    vmlab01.vm.box = "ubuntu/focal64"
+    vmlab01.vm.box = "ubuntu/jammy64"
     vmlab01.vm.hostname = 'srv-vmlab01'
-    vmlab01.vm.network "public_network", ip: "192.168.10.10", bridge: "Realtek USB GbE Family Controller"
+    vmlab01.vm.network "public_network", ip: "192.168.0.97", bridge: "Intel(R) Dual Band Wireless-AC 3165"
+    vmlab01.vm.provision "shell",
+      path: "script.sh"
     vmlab01.vm.provision "shell", inline: $aptupdate
   config.vm.provider "virtualbox" do |vmlab01|
-    vmlab01.memory = "2048"
+    vmlab01.memory = "4096"
     vmlab01.cpus   = "2"
   end
  end
