@@ -3,7 +3,7 @@ Utilizando o Vagrant e Virtualbox para laboratórios:
 
 - Versão utilizada do VirtualBox (6.1.36) e Vagrant (2.2.19)
 - Esse script instala o Ubuntu 22.04, atualiza o repositório, instala o net-tools, jq, curl, tree e Docker
-- A instalação do Docker é feita pelo script de conveniência disponibilizada no site oficial e recomendado para ambientes de teste e desenvolvimento
+- A instalação do Docker é feita pelo script de conveniência disponibilizado no site oficial e recomendado para ambientes de teste e desenvolvimento
 
 Siga os seguintes passos:
 
